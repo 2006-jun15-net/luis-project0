@@ -22,14 +22,7 @@ namespace StoreApplication.DatabaseAccess.Model
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<StoreLocations> StoreLocations { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=tcp:lgomez-csharp.database.windows.net,1433;Initial Catalog=store-application;Persist Security Info=False;User ID=gomez714;Password=@rewind55;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            }
-        }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

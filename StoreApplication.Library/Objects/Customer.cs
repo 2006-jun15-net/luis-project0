@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace StoreApplication.Library
 {
     public class Customer
     {
-
-
-        public int CustomerID { get; set; } = 0;
+        static int nextID;
+        public int CustomerID { get;  set; }
+        
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -17,12 +19,13 @@ namespace StoreApplication.Library
 
         public Customer(string FirstName, string LastName)
         {
-            CustomerID++;
-            this.CustomerID = CustomerID;
+            CustomerID = Interlocked.Increment(ref nextID);
+
             this.FirstName = FirstName;
             this.LastName = LastName;
             this.OrderHistory = new List<Order>();
         }
+
 
 
     }

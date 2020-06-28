@@ -1,19 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
 using StoreApplication.Library;
+using System.IO;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+
 
 namespace StoreApplication.App
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Customer luis = new Customer("Luis", "Gomez");
-            Console.WriteLine(luis);
-            Console.WriteLine(luis.CustomerID);
-            Console.WriteLine(luis.FirstName);
-            Console.WriteLine(luis.OrderHistory);
 
+            
+
+
+            
+
+           
 
         }
+
+        
+
+
+
     }
 }

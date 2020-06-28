@@ -1,0 +1,26 @@
+[
+  {
+    "CustomerID": 1,
+    "FirstName": "Luis",
+    "LastName": "Gomez",
+    "OrderHistory": []
+  },
+  {
+    "CustomerID": 2,
+    "FirstName": "Bob",
+    "LastName": "Last",
+    "OrderHistory": []
+  },
+  {
+    "CustomerID": 3,
+    "FirstName": "Charlie",
+    "LastName": "Goodman",
+    "OrderHistory": []
+  },
+  {
+    "CustomerID": 4,
+    "FirstName": "Pete",
+    "LastName": "Davidson",
+    "OrderHistory": []
+  }
+]

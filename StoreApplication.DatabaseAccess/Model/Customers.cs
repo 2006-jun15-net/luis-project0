@@ -15,6 +15,7 @@ namespace StoreApplication.DatabaseAccess.Model
         public string LastName { get; set; }
         public int? PrefferedLocation { get; set; }
 
+        public virtual StoreLocations PrefferedLocationNavigation { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
     }
 }

@@ -22,7 +22,14 @@ namespace StoreApplication.DatabaseAccess.Model
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<StoreLocations> StoreLocations { get; set; }
 
-        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(SecretConfiguration.ConnectionString);
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +44,11 @@ namespace StoreApplication.DatabaseAccess.Model
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasMaxLength(20);
+
+                entity.HasOne(d => d.PrefferedLocationNavigation)
+                    .WithMany(p => p.Customers)
+                    .HasForeignKey(d => d.PrefferedLocation)
+                    .HasConstraintName("FK_Customers_StoreLocations");
             });
 
             modelBuilder.Entity<Inventory>(entity =>

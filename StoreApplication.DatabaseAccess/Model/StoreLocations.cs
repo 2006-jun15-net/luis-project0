@@ -7,6 +7,7 @@ namespace StoreApplication.DatabaseAccess.Model
     {
         public StoreLocations()
         {
+            Customers = new HashSet<Customers>();
             Inventory = new HashSet<Inventory>();
             Orders = new HashSet<Orders>();
         }
@@ -19,6 +20,7 @@ namespace StoreApplication.DatabaseAccess.Model
         public string State { get; set; }
         public string Zip { get; set; }
 
+        public virtual ICollection<Customers> Customers { get; set; }
         public virtual ICollection<Inventory> Inventory { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
     }

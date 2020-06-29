@@ -5,7 +5,7 @@
 
 # Added files
 SecretConfiguration.cs
-.vscode
+.vscode/
 
 # User-specific files
 *.rsuser

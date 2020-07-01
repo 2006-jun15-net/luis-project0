@@ -21,15 +21,13 @@ namespace StoreApplication.DatabaseAccess.Controllers
             repository = repo;
         }
 
-        /// <summary>
-        /// Prints out a list of all the stores in the Stores table
-        /// </summary>
+        
         public void DisplayStores()
         {
             Console.WriteLine("List of Stores:\n");
             foreach (var s in repository.GetAll().ToList())
             {
-                Console.WriteLine($"ID: {s.StoreLocationId} {s.Name} Address: {s.Address1} {s.City}, {s.State} {s.Zip}\n");
+                Console.WriteLine($" ID: {s.StoreLocationId} {s.Name} Address: {s.Address1} {s.City}, {s.State} {s.Zip}\n");
             }
         }
     }

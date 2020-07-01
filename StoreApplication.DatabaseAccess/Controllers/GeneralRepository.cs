@@ -9,14 +9,14 @@ using System.Linq;
 namespace StoreApplication.DatabaseAccess.Controllers
 
 {
-
+    
     public class GeneralRepository<T> : IRepository<T> where T : class
     {
         public static readonly ILoggerFactory MyLoggerFactory
             = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         public static readonly DbContextOptions<storeapplicationContext> Options = new DbContextOptionsBuilder<storeapplicationContext>()
-            .UseLoggerFactory(MyLoggerFactory)
+            //.UseLoggerFactory(MyLoggerFactory)
             .UseSqlServer(SecretConfiguration.ConnectionString)
             .Options;
 

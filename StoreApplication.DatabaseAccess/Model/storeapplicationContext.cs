@@ -26,7 +26,6 @@ namespace StoreApplication.DatabaseAccess.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer(SecretConfiguration.ConnectionString);
             }
         }
@@ -36,6 +35,14 @@ namespace StoreApplication.DatabaseAccess.Model
             modelBuilder.Entity<Customers>(entity =>
             {
                 entity.HasKey(e => e.CustomerId);
+
+                entity.HasIndex(e => e.Email)
+                    .HasName("UQ__Customer__A9D105349428728D")
+                    .IsUnique();
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()

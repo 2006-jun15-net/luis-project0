@@ -1,16 +1,31 @@
 /****** Customers Table ******/
 
+
 CREATE TABLE [dbo].[Customers](
 	[CustomerId] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](20) NOT NULL,
 	[LastName] [nvarchar](20) NOT NULL,
 	[PrefferedLocation] [int] NULL,
+	[Email] [nvarchar](100) NOT NULL,
  CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED 
 (
 	[CustomerId] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
 )WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+ALTER TABLE [dbo].[Customers]  WITH CHECK ADD  CONSTRAINT [FK_Customers_StoreLocations] FOREIGN KEY([PrefferedLocation])
+REFERENCES [dbo].[StoreLocations] ([StoreLocationId])
+GO
+
+ALTER TABLE [dbo].[Customers] CHECK CONSTRAINT [FK_Customers_StoreLocations]
+GO
+
+
 
 /****** Store Locations Table   ******/
 

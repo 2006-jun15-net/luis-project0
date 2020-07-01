@@ -21,9 +21,7 @@ namespace StoreApplication.DatabaseAccess.Controllers
             repository = repo;
         }
 
-        /// <summary>
-        /// Prints out a list of all products in the Products table
-        /// </summary>
+        
         public void DisplayProducts()
         {
             Console.WriteLine("List of Products:\n");

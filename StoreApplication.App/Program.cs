@@ -14,7 +14,7 @@ namespace StoreApplication.App
     {
 
         
-        private static void PlaceOrder(Customers currentCustomer, StoreController storeControl, ProductController productControl, OrderController orderControl)
+        private static void PlaceOrder(Customers existingCustomer, StoreController storeControl, ProductController productControl, OrderController orderControl)
         {
             Console.WriteLine("Please choose the store that you would like to place an order with ");
             storeControl.DisplayStores();
@@ -141,14 +141,14 @@ namespace StoreApplication.App
 
                     
                     Orders newOrder = new Orders { 
-                        CustomerId = currentCustomer.CustomerId, 
+                        CustomerId = existingCustomer.CustomerId, 
                         LocationId = currentStore.StoreLocationId,  
                         Total = totalCostOfOrder,
                         TimeOfOrder = DateTime.Now};
                     orderControl.repository.Add(newOrder);
                     orderControl.repository.Save();
 
-                    newOrder = orderControl.repository.GetAll().First(o => o.CustomerId.Equals(currentCustomer.CustomerId));
+                    newOrder = orderControl.repository.GetAll().First(o => o.CustomerId.Equals(existingCustomer.CustomerId));
 
                     foreach (var item in cartProducts.Keys)
                     {
@@ -176,7 +176,7 @@ namespace StoreApplication.App
         private static Customers CreateCustomer(CustomerController customerControl)
         {
             Customers customer = new Customers();
-            Console.WriteLine("Please type 1 to create an account, or type 2 to use existing account");
+            Console.WriteLine("Type 1 to create a new customer or Type 2 to choose an existing customer");
             string userInput = Console.ReadLine();
             int input;
             while (!int.TryParse(userInput, out input))
@@ -187,11 +187,11 @@ namespace StoreApplication.App
 
             if (input == 1)
             {
-                Console.WriteLine("Enter First Name:");
+                Console.WriteLine("Please enter your First Name:");
                 string firstName = Console.ReadLine();
-                Console.WriteLine("Enter Last Name: ");
+                Console.WriteLine("Please enter your Last Name: ");
                 string lastName = Console.ReadLine();
-                Console.WriteLine("Enter an Email:");
+                Console.WriteLine("Please enter your Email:");
                 string email = Console.ReadLine();
                 if (customerControl.repository.GetAll().Any(c => c.Email == email))
                 {
@@ -203,7 +203,7 @@ namespace StoreApplication.App
                     customerControl.repository.Add(newCustomer);
                     customerControl.repository.Save();
                     customer = customerControl.repository.GetById(customerControl.repository.GetAll().First(c => c.Email == email).CustomerId);
-                    Console.WriteLine($"Congratulations!! Your account was successfully registered. The email registered with us is {email} , and your ID is {customer.CustomerId}");
+                    Console.WriteLine($"Congratulations!! Your account was successfully registered. {customer.FirstName} {customer.LastName} {customer.CustomerId}");
                 }
 
             }
@@ -250,12 +250,12 @@ namespace StoreApplication.App
             Console.WriteLine("Hello and Welcome to Gomez and Company!");
             string displayHome =
                 "How could we assist you today?\n" +
-                "1: Create new customer or choose customer to begin order\n" +
-                "2. Place an order\n" +
-                "3. Search for customer by Name\n" +
+                "1: Choose or create new customer to begin order\n" +
+                "2: Place an order\n" +
+                "3: Search for customer by Name\n" +
                 "4: Display details of an order\n" +
-                "5: Display order history of this customer\n" +
-                "6: Display order history of a store\n" +
+                "5: Display order history for customer\n" +
+                "6: Display order history for store\n" +
                 "0: Exit";
 
             CustomerController customerControl = new CustomerController();
@@ -269,7 +269,7 @@ namespace StoreApplication.App
             while (loggedIn == true)
             {
                 Console.WriteLine(displayHome);
-                Console.WriteLine("Please select your option or select 0 to exit");
+                Console.WriteLine("Please select a task");
                 string userInput = Console.ReadLine();
                 int input;
                 while (!int.TryParse(userInput, out input))

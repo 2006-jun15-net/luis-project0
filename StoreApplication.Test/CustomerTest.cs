@@ -10,19 +10,18 @@ namespace StoreApplication.Test
         [Fact]
         public void CustomerStoresNamesCorrectly()
         {
-            //arrange
+            
 
-            string randomValue = "RandomValue";
-            //act
-            customer.FirstName = randomValue;
-            customer.LastName = randomValue;
-            customer.Email = randomValue;
+            string someData = "someData";
+            customer.FirstName = someData;
+            customer.LastName = someData;
+            customer.Email = someData;
 
 
-            //assert
-            Assert.Equal(randomValue, customer.FirstName);
-            Assert.Equal(randomValue, customer.LastName);
-            Assert.Equal(randomValue, customer.Email);
+            
+            Assert.Equal(someData, customer.FirstName);
+            Assert.Equal(someData, customer.LastName);
+            Assert.Equal(someData, customer.Email);
 
         }
          

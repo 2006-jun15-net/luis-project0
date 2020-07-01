@@ -18,8 +18,7 @@ namespace StoreApplication.Test
 
         [Theory]
         [InlineData(0)]
-        [InlineData(-1)]
-        [InlineData(-3)]
+        [InlineData(-5)]
         public void ProductPriceIsZeroOrNegativeThrowsException(decimal price)
         {
             Assert.ThrowsAny<ArgumentException>(() => product.Price = price);
@@ -28,21 +27,19 @@ namespace StoreApplication.Test
         [Fact]
         public void ProductNameStoresCorrectly()
         {
-            //arrange
             string randomName = "RandomName";
-            //act
+
             product.Name = randomName;
-            //assert
+
             Assert.Equal(randomName, product.Name);
         }
         [Fact]
         public void ProductPriceStoresCorrectly()
         {
-            //arrange
             decimal randomValue = 1.99M;
-            //act
+
             product.Price = randomValue;
-            //assert
+
             Assert.Equal(randomValue, product.Price);
         }
 

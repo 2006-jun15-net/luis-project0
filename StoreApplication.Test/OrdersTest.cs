@@ -10,11 +10,8 @@ namespace StoreApplication.Test
     public class OrdersTest
     {
         private readonly Order order = new Order();
-        [Fact]
-        public void OrderIdShouldDefaultToZero()
-        {
-            Assert.Equal(0, order.OrderId);
-        }
+       
+        
         [Fact]
         public void OrderDateShouldDefaultToNull()
         {

@@ -9,17 +9,6 @@ namespace StoreApplication.Test
     public class StoreLocationTest
     {
         StoreLocation store = new StoreLocation();
-        [Fact]
-        public void StoreIdDefaultsToZero()
-        {
-            Assert.Equal(0, store.StoreLocationId);
-        }
-
-        [Fact]
-        public void StoreNameIsEmptyThrowsException()
-        {
-            Assert.ThrowsAny<ArgumentException>(() => store.Name = "");
-        }
 
         [Fact]
         public void StoreAddressInfoIsEmptyThrowsException()
@@ -29,6 +18,16 @@ namespace StoreApplication.Test
             Assert.ThrowsAny<ArgumentException>(() => store.State = "");
             Assert.ThrowsAny<ArgumentException>(() => store.Zip = "");
         }
+
+      
+
+        [Fact]
+        public void StoreNameIsEmptyThrowsException()
+        {
+            Assert.ThrowsAny<ArgumentException>(() => store.Name = "");
+        }
+
+        
 
 
     }

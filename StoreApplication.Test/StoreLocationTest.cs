@@ -19,10 +19,9 @@ namespace StoreApplication.Test
             Assert.ThrowsAny<ArgumentException>(() => store.Zip = "");
         }
 
-      
 
         [Fact]
-        public void StoreNameIsEmptyThrowsException()
+        public void StoreNameCannotBeEmpty()
         {
             Assert.ThrowsAny<ArgumentException>(() => store.Name = "");
         }

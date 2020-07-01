@@ -8,25 +8,25 @@ namespace StoreApplication.Test
     {
         Customer customer = new Customer();
         [Fact]
-        public void CustomerStoresNamesCorrectly()
+        public void CustomerInfoisValid()
         {
             
 
             string someData = "someData";
+            string someEmail = "email@test.com";
+
             customer.FirstName = someData;
             customer.LastName = someData;
-            customer.Email = someData;
-
-
+            customer.Email = someEmail;
             
             Assert.Equal(someData, customer.FirstName);
             Assert.Equal(someData, customer.LastName);
-            Assert.Equal(someData, customer.Email);
+            Assert.Equal(someEmail, customer.Email);
 
         }
          
         [Fact]
-        public void NameThrowsExceptionIfNull()
+        public void CustomerInfoThrowsExceptionIfNull()
         {
             Assert.ThrowsAny<ArgumentException>(() => customer.FirstName = "");
             Assert.ThrowsAny<ArgumentException>(() => customer.LastName = "");

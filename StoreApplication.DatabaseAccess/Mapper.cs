@@ -15,7 +15,7 @@ namespace StoreApplication.Library
             };
         }
 
-        public Customers BusinessModel(Customer customer)
+        public Customers BusinessModelToDbModel(Customer customer)
         {
             return new Customers { FirstName = customer.FirstName,
                 LastName = customer.LastName,

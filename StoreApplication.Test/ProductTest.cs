@@ -11,9 +11,20 @@ namespace StoreApplication.Test
         Product product = new Product();
 
         [Fact]
-        public void ProductNameIsEmptyThrowsException()
+        public void ProductNameCannotBeEmpty()
         {
             Assert.ThrowsAny<ArgumentException>(() => product.Name = "");
+        }
+
+
+        [Fact]
+        public void ProductNameisValid()
+        {
+            string SomeName = "Name";
+
+            product.Name = SomeName;
+
+            Assert.Equal(SomeName, product.Name);
         }
 
         [Theory]
@@ -24,29 +35,5 @@ namespace StoreApplication.Test
             Assert.ThrowsAny<ArgumentException>(() => product.Price = price);
         }
 
-        [Fact]
-        public void ProductNameStoresCorrectly()
-        {
-            string randomName = "RandomName";
-
-            product.Name = randomName;
-
-            Assert.Equal(randomName, product.Name);
-        }
-        [Fact]
-        public void ProductPriceStoresCorrectly()
-        {
-            decimal randomValue = 1.99M;
-
-            product.Price = randomValue;
-
-            Assert.Equal(randomValue, product.Price);
-        }
-
-        [Fact]
-        public void ProductIdDefaultsToZero()
-        {
-            Assert.Equal(0, product.ProductId);
-        }
-    }
+    }    
 }

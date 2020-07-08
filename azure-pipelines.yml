@@ -15,7 +15,13 @@ variables:
   Config: Release
 
 steps:
-
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: '2006-jun15-net'
+    scannerMode: 'MSBuild'
+    projectKey: '2006-jun15-net_luis-project00'
+    projectName: 'Luis Project 0'
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -29,6 +35,12 @@ steps:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration $(Config)'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 
 - task: DotNetCoreCLI@2
   inputs:
